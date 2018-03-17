@@ -19,10 +19,7 @@ namespace coIT.MyHeco.Login.Domain
         }
 
         public override string Email => LoginInformation.Email;
-        public int Id { get; private set; }
         public Firma Firma { get; private set; }
-        public override Command<LoginParameter> Login => Command<LoginParameter>.AlwaysOn(RunLogin);
-        public override Command PasswortZuruecksetzen => Command.AlwaysOn(RunRecoverPassword);
 
         private Benutzer RunRecoverPassword()
         {
@@ -31,7 +28,7 @@ namespace coIT.MyHeco.Login.Domain
 
         public LoginInformation LoginInformation { get; protected set; }
         public int WrongLogins { get; private set; }
-        private Benutzer RunLogin(LoginParameter parameter)
+        public override Benutzer RunLogin(LoginParameter parameter)
         {
             if (LoginInformation.Passwort.Equals(parameter.Passwort)) return new EingeloggterBenutzer(LoginInformation,Firma);
             WrongLogins++;

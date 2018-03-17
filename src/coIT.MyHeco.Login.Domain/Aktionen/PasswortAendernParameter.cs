@@ -1,8 +1,8 @@
 ﻿namespace coIT.MyHeco.Login.Domain.Aktionen
 {
-    public class PasswortAendern
+    public class PasswortAendernParameter
     {
-        public PasswortAendern(string altesPasswort, string neuesPasswort, string neuesPasswortCheck)
+        public PasswortAendernParameter(string altesPasswort, string neuesPasswort, string neuesPasswortCheck)
         {
             AltesPasswort = altesPasswort;
             NeuesPasswort = neuesPasswort;

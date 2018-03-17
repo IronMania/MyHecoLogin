@@ -3,7 +3,7 @@ using coIT.MyHeco.Login.Domain;
 using coIT.MyHeco.Login.Domain.BenutzerInformationen;
 using coIT.MyHeco.Login.Domain.Services;
 
-namespace coIt.MyHeco.Login.Data.ComWork
+namespace coIT.MyHeco.Login.Data.ComWork
 {
     public class ComWorkRepositoryDummy : IComWorkRepository
     {

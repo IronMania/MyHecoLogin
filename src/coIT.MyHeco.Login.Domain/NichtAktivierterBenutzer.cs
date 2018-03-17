@@ -22,12 +22,8 @@ namespace coIT.MyHeco.Login.Domain
         {
             AktivierungsCode = aktivierungsCode;
         }
-
-        public override Command<LoginParameter> Login => Command<LoginParameter>.OffCommand(this);
-        public override Command PasswortZuruecksetzen => Command.OffCommand(this);
-
+        
         public string AktivierungsCode { get; }
-        public override Command<AktivierungsParameter> Aktivieren => Command<AktivierungsParameter>.AlwaysOn(RunActivate);
 
         /// <summary>
         ///     Wenn Registrierung noch geprüft werden soll
@@ -61,7 +57,7 @@ namespace coIT.MyHeco.Login.Domain
             return result;
         }
 
-        private Benutzer RunActivate(AktivierungsParameter aktivierungsParameter)
+        public override Benutzer RunAktivieren(AktivierungsParameter aktivierungsParameter)
         {
             if (aktivierungsParameter.Aktivierungscode.Equals(AktivierungsCode))
                 return new EingeloggterBenutzer(LoginInformation,Firma);

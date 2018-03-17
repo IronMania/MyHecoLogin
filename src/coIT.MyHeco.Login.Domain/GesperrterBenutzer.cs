@@ -9,8 +9,5 @@ namespace coIT.MyHeco.Login.Domain
         public GesperrterBenutzer(LoginInformation loginInformation, Firma firma) : base(loginInformation, firma)
         {
         }
-
-        public override Command<LoginParameter> Login => Command<LoginParameter>.OffCommand(this);
-        public override Command PasswortZuruecksetzen => Command.OffCommand(this);
     }
 }

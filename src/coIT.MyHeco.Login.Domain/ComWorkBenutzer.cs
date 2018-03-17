@@ -15,13 +15,10 @@ namespace coIT.MyHeco.Login.Domain
             Email = email;
             Firma = firma;
         }
-        public int Id { get; private set; }
-        public override Command<AutomatischeRegistrierungsParameter> AutomatischeRegistrierung
-        => Command<AutomatischeRegistrierungsParameter>.AlwaysOn(ExecuteRegister);
-
+        
         public Firma Firma { get; private set; }
 
-        public Benutzer ExecuteRegister(AutomatischeRegistrierungsParameter parameter)
+        public override Benutzer RunAutomatischeRegistrierung(AutomatischeRegistrierungsParameter parameter)
         {
             return NichtAktivierterBenutzer.AutoCreate(this,parameter);
         }

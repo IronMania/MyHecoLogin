@@ -4,7 +4,7 @@ using coIT.MyHeco.Login.Domain.BenutzerInformationen;
 using coIT.MyHeco.Login.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace coT.MyHeco.Login.Web.Controllers
+namespace coIT.MyHeco.Login.Web.Controllers
 {
     [Route("api/v1/Login")]
     public class LoginLevel2Controller : Controller
@@ -31,7 +31,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult Login(string email, string passwort)
         {
             var benutzer = _myHecoRepository.FindeBenutzerByMail(email);
-            benutzer = benutzer.Login.Run(new LoginParameter(passwort));
+            benutzer = benutzer.RunLogin(new LoginParameter(passwort));
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
@@ -41,7 +41,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult ManuelleRegistrierung(string email, string firmenName, string passwort)
         {
             Benutzer benutzer =new  UnbekannterBenutzer(new LoginInformation(email,passwort));
-            benutzer = benutzer.ManuelleRegistrierung.Run(new ManuelleRegistrierungsParameter(firmenName,passwort));
+            benutzer = benutzer.RunManuelleRegistrierung(new ManuelleRegistrierungsParameter(firmenName,passwort));
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
@@ -51,7 +51,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult AutoRegistrierung(string email, string passwort)
         {
             Benutzer benutzer =_comWorkRepository.FindeBenutzerByMail(email);
-            benutzer = benutzer.AutomatischeRegistrierung.Run(new AutomatischeRegistrierungsParameter(passwort));
+            benutzer = benutzer.RunAutomatischeRegistrierung(new AutomatischeRegistrierungsParameter(passwort));
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
@@ -61,7 +61,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult Aktivierung(string email, string aktivierungscode)
         {
             var benutzer =_myHecoRepository.FindeBenutzerByMail(email);
-            benutzer = benutzer.Aktivieren.Run(new AktivierungsParameter(aktivierungscode));
+            benutzer = benutzer.RunAktivieren(new AktivierungsParameter(aktivierungscode));
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
@@ -71,7 +71,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult PasswordZuruecksetzen(string email)
         {
             var benutzer =_myHecoRepository.FindeBenutzerByMail(email);
-            benutzer = benutzer.PasswortZuruecksetzen.Run();
+            benutzer = benutzer.RunPasswortZuruecksetzen();
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
@@ -80,7 +80,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult PasswordAendern(string email, string altesPasswort, string neuesPasswort, string neuesPasswortCheck)
         {
             var benutzer =_myHecoRepository.FindeBenutzerByMail(email);
-            benutzer = benutzer.PasswortAendern.Run(new PasswortAendern(altesPasswort,neuesPasswort,neuesPasswortCheck));
+            benutzer = benutzer.RunPasswortAendern(new PasswortAendernParameter(altesPasswort,neuesPasswort,neuesPasswortCheck));
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
@@ -90,7 +90,7 @@ namespace coT.MyHeco.Login.Web.Controllers
         public IActionResult Ausloggen(string email)
         {
             var benutzer =_myHecoRepository.FindeBenutzerByMail(email);
-            benutzer = benutzer.Logout.Run();
+            benutzer = benutzer.RunLogout();
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});

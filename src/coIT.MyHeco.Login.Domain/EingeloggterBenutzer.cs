@@ -10,14 +10,7 @@ namespace coIT.MyHeco.Login.Domain
         {
         }
 
-        public override Command Logout => Command.AlwaysOn(RunLogout);
-        public override Command<LoginParameter> Login => Command<LoginParameter>.OffCommand(this);
-        public override Command PasswortZuruecksetzen => Command.OffCommand(this);
-
-        public override Command<PasswortAendern> PasswortAendern =>
-            Command<PasswortAendern>.AlwaysOn(RunChangePassword);
-
-        private Benutzer RunChangePassword(PasswortAendern arg)
+        public override Benutzer RunPasswortAendern(PasswortAendernParameter arg)
         {
             if (LoginInformation.Passwort.Equals(arg.AltesPasswort) && arg.NeuesPasswort.Equals(arg.NeuesPasswortCheck))
             {
@@ -26,7 +19,7 @@ namespace coIT.MyHeco.Login.Domain
             return this;
         }
 
-        private Benutzer RunLogout()
+        public override Benutzer RunLogout()
         {
             return new MyHecoBenutzer(LoginInformation,Firma);
         }

@@ -5,11 +5,9 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Domain", "coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj", "{A91E74A5-7CF1-4A8F-B47A-64018898D596}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Domain.Spec", "coIT.MyHeco.Login.Domain.Spec\coIT.MyHeco.Login.Domain.Spec.csproj", "{8BD9652C-5211-4D0F-8DAE-C30217F0BDA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Data", "coIt.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj", "{D3375132-2184-4D03-A44A-AC94E7160D7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coIt.MyHeco.Login.Data", "coIt.MyHeco.Login.Data\coIt.MyHeco.Login.Data.csproj", "{D3375132-2184-4D03-A44A-AC94E7160D7B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coT.MyHeco.Login.Web", "coT.MyHeco.Login.Web\coT.MyHeco.Login.Web.csproj", "{5249F2CE-E798-4743-8738-D1E0B78A4004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Web", "coIT.MyHeco.Login.Web\coIT.MyHeco.Login.Web.csproj", "{5249F2CE-E798-4743-8738-D1E0B78A4004}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{A91E74A5-7CF1-4A8F-B47A-64018898D596}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A91E74A5-7CF1-4A8F-B47A-64018898D596}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A91E74A5-7CF1-4A8F-B47A-64018898D596}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BD9652C-5211-4D0F-8DAE-C30217F0BDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BD9652C-5211-4D0F-8DAE-C30217F0BDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BD9652C-5211-4D0F-8DAE-C30217F0BDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BD9652C-5211-4D0F-8DAE-C30217F0BDA9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3375132-2184-4D03-A44A-AC94E7160D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3375132-2184-4D03-A44A-AC94E7160D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3375132-2184-4D03-A44A-AC94E7160D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace coT.MyHeco.Login.Web.Extensions
+namespace coIT.MyHeco.Login.Web.Extensions
 {
     public static class RouteExtensions
     {

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Model\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -17,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\coIt.MyHeco.Login.Data\coIt.MyHeco.Login.Data.csproj" />
+    <ProjectReference Include="..\coIt.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj" />
     <ProjectReference Include="..\coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj" />
   </ItemGroup>
 

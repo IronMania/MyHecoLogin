@@ -1,23 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using coIt.MyHeco.Login.Data.ComWork;
-using coIt.MyHeco.Login.Data.MyHeco;
-using coIT.MyHeco.Login.Domain;
+﻿using coIT.MyHeco.Login.Data.ComWork;
+using coIT.MyHeco.Login.Data.MyHeco;
 using coIT.MyHeco.Login.Domain.Services;
-using coT.MyHeco.Login.Web.Controllers;
+using coIT.MyHeco.Login.Web.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Rewrite.Internal.ApacheModRewrite;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
-namespace coT.MyHeco.Login.Web
+namespace coIT.MyHeco.Login.Web
 {
     public class Startup
     {
@@ -34,7 +27,6 @@ namespace coT.MyHeco.Login.Web
             services.AddTransient<IComWorkRepository, ComWorkRepositoryDummy>();
             services.AddTransient<IMyHecoRepository, MyHecoRepositoryDummy>();
             services.AddTransient<IBenutzerService, BenutzerService>();
-            services.AddTransient<SirenBenutzerMessageCreater>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IUrlHelper>(x =>
             {
