@@ -1,8 +1,5 @@
 ﻿using coIT.MyHeco.Login.Domain.Aktionen;
 using coIT.MyHeco.Login.Domain.Services;
-using coIT.MyHeco.Registrierung.Domain;
-using coIT.MyHeco.Registrierung.Domain.Aktionen;
-using coIT.MyHeco.Registrierung.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coIT.MyHeco.Login.Web.Controllers
@@ -10,16 +7,12 @@ namespace coIT.MyHeco.Login.Web.Controllers
     [Route("api/v1/Login")]
     public class LoginLevel2Controller : Controller
     {
-        private readonly IComWorkRepository _comWorkRepository;
-        private readonly IMyHecoRepository _myHecoRepository;
-        private readonly INichtAktivierteBenutzerRepository _nichtAktivierteBenutzerRepository;
 
-        public LoginLevel2Controller(IMyHecoRepository myHecoRepository, IComWorkRepository comWorkRepository,
-            INichtAktivierteBenutzerRepository nichtAktivierteBenutzerRepository)
+        private readonly IMyHecoRepository _myHecoRepository;
+
+        public LoginLevel2Controller(IMyHecoRepository myHecoRepository)
         {
             _myHecoRepository = myHecoRepository;
-            _comWorkRepository = comWorkRepository;
-            _nichtAktivierteBenutzerRepository = nichtAktivierteBenutzerRepository;
         }
 
         [HttpGet("search")]
@@ -28,11 +21,7 @@ namespace coIT.MyHeco.Login.Web.Controllers
             var benutzer = _myHecoRepository.FindeBenutzerByMail(email);
             if (benutzer != null) return Json(new {status = benutzer.GetType().Name});
 
-            var benutzer2 = _nichtAktivierteBenutzerRepository.FindeBenutzerByMail(email);
-            if (benutzer2 != null) return Json(new {status = benutzer2.GetType().Name});
-            var benutzer3 = _comWorkRepository.FindeBenutzerByMail(email);
-            if (benutzer3 != null) return Json(new {status = benutzer3.GetType().Name});
-            return Json(new {status = typeof(UnbekannterBenutzer).Name});
+            return Redirect($"http://localhost:54187/api/v1/Register/search?email={email}");
         }
 
         [HttpPut("{email}")]
@@ -42,39 +31,6 @@ namespace coIT.MyHeco.Login.Web.Controllers
             benutzer = benutzer.RunLogin(new LoginParameter(passwort));
             _myHecoRepository.Update(benutzer);
             _myHecoRepository.Speichern();
-            return Json(new {status = benutzer.GetType().Name});
-        }
-
-        [HttpPut("{email}/ManuelleRegistrierung")]
-        public IActionResult ManuelleRegistrierung(string email, string firmenName, string passwort)
-        {
-            var benutzer = new UnbekannterBenutzer(email);
-            var nichtAktivierterBenutzer =
-                benutzer.RunManuelleRegistrierung(new ManuelleRegistrierungsParameter(firmenName, passwort)) as
-                    NichtAktivierterBenutzer;
-            _nichtAktivierteBenutzerRepository.Add(nichtAktivierterBenutzer);
-            _nichtAktivierteBenutzerRepository.Speichern();
-            return Json(new {status = _nichtAktivierteBenutzerRepository.GetType().Name});
-        }
-
-        [HttpPut("{email}/AutoRegistrierung")]
-        public IActionResult AutoRegistrierung(string email, string passwort)
-        {
-            var benutzer = _comWorkRepository.FindeBenutzerByMail(email);
-            var nichtAktivierterBenutzer =
-                benutzer.RunAutomatischeRegistrierung(new AutomatischeRegistrierungsParameter(passwort)) as
-                    NichtAktivierterBenutzer;
-            _nichtAktivierteBenutzerRepository.Add(nichtAktivierterBenutzer);
-            _nichtAktivierteBenutzerRepository.Speichern();
-            return Json(new {status = _nichtAktivierteBenutzerRepository.GetType().Name});
-        }
-
-        [HttpPut("{email}/Aktivierung")]
-        public IActionResult Aktivierung(string email, string aktivierungscode)
-        {
-            var benutzer = _nichtAktivierteBenutzerRepository.FindeBenutzerByMail(email);
-            benutzer.RunAktivieren(new AktivierungsParameter(aktivierungscode));
-            _nichtAktivierteBenutzerRepository.Speichern();
             return Json(new {status = benutzer.GetType().Name});
         }
 

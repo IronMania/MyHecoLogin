@@ -1,13 +1,11 @@
 ﻿using System.Linq;
-using coIT.MyHeco.Login.Domain;
-using coIT.MyHeco.Login.Domain.Services;
-using coIT.MyHeco.Login.Web.Extensions;
-using coIT.MyHeco.Login.Web.Model.Hypermedia;
 using coIT.MyHeco.Registrierung.Domain;
 using coIT.MyHeco.Registrierung.Domain.Services;
+using coIT.MyHeco.Registrierung.Web.Extensions;
+using coIT.MyHeco.Registrierung.Web.Model.Hypermedia;
 using Microsoft.AspNetCore.Mvc;
 
-namespace coIT.MyHeco.Login.Web.Controllers
+namespace coIT.MyHeco.Registrierung.Web.Controllers
 {
     [Route("[controller]")]
     public class AdminController : Controller
@@ -36,7 +34,7 @@ namespace coIT.MyHeco.Login.Web.Controllers
 
         private Siren ConvertToSiren(NichtAktivierterBenutzer user)
         {
-            var selfUrl = _urlHelper.AbsoluteAction(nameof(LoginLevel2Controller.Search), "Login", new {email = user.Email});
+            var selfUrl = _urlHelper.AbsoluteAction(nameof(RegisterLevel2Controller.Search), typeof(RegisterLevel2Controller).ControllerName(), new {email = user.Email});
             var result = new Siren(selfUrl);
             result.Class.Add(user.GetType().Name);
             result.Properties.Add("Email",user.Email);

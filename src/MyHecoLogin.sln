@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Registrierung.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Registrierung.Data", "coIT.MyHeco.Registrierung.Data\coIT.MyHeco.Registrierung.Data.csproj", "{270508CD-691A-4ACC-8DCB-0C1D37D7C0C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coIT.MyHeco.Core", "coIT.MyHeco.Core\coIT.MyHeco.Core.csproj", "{7BAAA7B0-C453-411B-812A-6117F325D017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Core", "coIT.MyHeco.Core\coIT.MyHeco.Core.csproj", "{7BAAA7B0-C453-411B-812A-6117F325D017}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Registrierung.Web", "coIT.MyHeco.Registrierung.Web\coIT.MyHeco.Registrierung.Web.csproj", "{656C780E-26A0-414D-98B5-17DD229C27F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{7BAAA7B0-C453-411B-812A-6117F325D017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BAAA7B0-C453-411B-812A-6117F325D017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BAAA7B0-C453-411B-812A-6117F325D017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656C780E-26A0-414D-98B5-17DD229C27F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656C780E-26A0-414D-98B5-17DD229C27F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656C780E-26A0-414D-98B5-17DD229C27F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656C780E-26A0-414D-98B5-17DD229C27F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
