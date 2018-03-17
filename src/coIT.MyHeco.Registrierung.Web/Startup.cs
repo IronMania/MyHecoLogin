@@ -1,6 +1,7 @@
 ﻿using coIT.MyHeco.Registrierung.Data;
 using coIT.MyHeco.Registrierung.Data.ComWork;
 using coIT.MyHeco.Registrierung.Domain.Services;
+using CoIT.MyHeco.Registrierung.Web.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,7 @@ namespace coIT.MyHeco.Registrierung.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IComWorkRepository, ComWorkRepositoryDummy>();
+            services.AddTransient<SirenBenutzerMessageCreater>();
             services.AddTransient<INichtAktivierteBenutzerRepository, NichtaktivierteBenutzerRepository>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IUrlHelper>(x =>

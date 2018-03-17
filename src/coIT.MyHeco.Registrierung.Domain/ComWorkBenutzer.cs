@@ -1,4 +1,5 @@
-﻿using coIT.MyHeco.Core.BenutzerInformationen;
+﻿using coIT.MyHeco.Core;
+using coIT.MyHeco.Core.BenutzerInformationen;
 using coIT.MyHeco.Registrierung.Domain.Aktionen;
 
 namespace coIT.MyHeco.Registrierung.Domain
@@ -17,9 +18,12 @@ namespace coIT.MyHeco.Registrierung.Domain
 
         public Firma Firma { get; }
 
-        public override Benutzer RunAutomatischeRegistrierung(AutomatischeRegistrierungsParameter parameter)
+        public override Command<Benutzer,AutomatischeRegistrierungsParameter> AutomatischeRegistrierung
+            => Command<Benutzer,AutomatischeRegistrierungsParameter>.AlwaysOn(ExecuteRegister);
+        public Benutzer ExecuteRegister(AutomatischeRegistrierungsParameter parameter)
         {
-            return NichtAktivierterBenutzer.AutoCreate(this, parameter);
+            return NichtAktivierterBenutzer.AutoCreate(this,parameter);
         }
+
     }
 }

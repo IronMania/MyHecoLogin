@@ -1,5 +1,6 @@
 ﻿using coIT.MyHeco.Login.Data.MyHeco;
 using coIT.MyHeco.Login.Domain.Services;
+using coIT.MyHeco.Login.Web.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace coIT.MyHeco.Login.Web
         {
 
             services.AddTransient<IMyHecoRepository, MyHecoRepository>();
+            services.AddTransient<SirenBenutzerMessageCreater>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IUrlHelper>(x =>
             {

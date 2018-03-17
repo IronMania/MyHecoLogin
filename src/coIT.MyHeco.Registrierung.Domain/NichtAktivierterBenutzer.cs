@@ -1,4 +1,5 @@
 ﻿using System;
+using coIT.MyHeco.Core;
 using coIT.MyHeco.Core.BenutzerInformationen;
 using coIT.MyHeco.Registrierung.Domain.Aktionen;
 using coIT.MyHeco.Registrierung.Domain.Events;
@@ -64,10 +65,13 @@ namespace coIT.MyHeco.Registrierung.Domain
             return result;
         }
 
-        public override Benutzer RunAktivieren(AktivierungsParameter aktivierungsParameter)
+        public override Command<Benutzer,AktivierungsParameter> Aktivieren => Command<Benutzer,AktivierungsParameter>.AlwaysOn(RunAktivieren);
+        private Benutzer RunAktivieren(AktivierungsParameter aktivierungsParameter)
         {
             if (aktivierungsParameter.Aktivierungscode.Equals(AktivierungsCode))
-                AddDomainEvent(new AccountActivated(Passwort, Email, Firma));
+            {
+                AddDomainEvent(new AccountActivated(Passwort,Email,Firma));
+            }
             return this;
         }
     }

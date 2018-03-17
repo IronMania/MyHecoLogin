@@ -21,7 +21,7 @@ namespace coIT.MyHeco.Registrierung.Web.Model.Hypermedia
         }
         public Siren(IUrlHelper urlHelper): this()
         {
-            Links = new List<Link>()
+            Links = new List<Link>
             {
                 new Link(urlHelper.AbsoluteAction(),"self"),
                 new Link("http://localhost:60655/api/v2/Login", "Login")

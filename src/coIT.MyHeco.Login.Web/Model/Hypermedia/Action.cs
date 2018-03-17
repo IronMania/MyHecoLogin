@@ -24,6 +24,8 @@ namespace coIT.MyHeco.Login.Web.Model.Hypermedia
             Delete,
             [EnumMember(Value = "GET")]
             Get,
+            [EnumMember(Value = "PATCH")]
+            Patch
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using coIT.MyHeco.Core.BenutzerInformationen;
+﻿using coIT.MyHeco.Core;
+using coIT.MyHeco.Core.BenutzerInformationen;
 using coIT.MyHeco.Registrierung.Domain.Aktionen;
 
 namespace coIT.MyHeco.Registrierung.Domain
@@ -10,13 +11,12 @@ namespace coIT.MyHeco.Registrierung.Domain
             Email = email;
         }
 
-        public override Benutzer RunManuelleRegistrierung(
-            ManuelleRegistrierungsParameter manuelleRegistrierungsParameter)
+        public override Command<Benutzer,ManuelleRegistrierungsParameter> ManuelleRegistrierung => Command<Benutzer,ManuelleRegistrierungsParameter>.AlwaysOn(ExecuteRegister);
+
+        private Benutzer ExecuteRegister(ManuelleRegistrierungsParameter loginInformation)
         {
-            if (manuelleRegistrierungsParameter.FirmenName.Equals(string.Empty)) return this;
-            return NichtAktivierterBenutzer.CreateNew(
-                new LoginInformation(Email, manuelleRegistrierungsParameter.Passwort),
-                new Firma(manuelleRegistrierungsParameter.FirmenName));
+            if (loginInformation.FirmenName.Equals(string.Empty)) return this;
+            return NichtAktivierterBenutzer.CreateNew(new LoginInformation(Email, loginInformation.Passwort), new Firma(loginInformation.FirmenName));
         }
     }
 }

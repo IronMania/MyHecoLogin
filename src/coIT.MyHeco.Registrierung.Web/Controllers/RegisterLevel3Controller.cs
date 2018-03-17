@@ -3,29 +3,31 @@ using coIT.MyHeco.Registrierung.Domain.Aktionen;
 using coIT.MyHeco.Registrierung.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace coIT.MyHeco.Registrierung.Web.Controllers
+namespace CoIT.MyHeco.Registrierung.Web.Controllers
 {
-    [Route("api/v1/Register")]
-    public class RegisterLevel2Controller : Controller
+    [Route("api/v2/Register")]
+    public class RegisterLevel3Controller : Controller
     {
         private readonly IComWorkRepository _comWorkRepository;
         private readonly INichtAktivierteBenutzerRepository _nichtAktivierteBenutzerRepository;
+        private readonly SirenBenutzerMessageCreater _benutzerMessageCreater;
 
-        public RegisterLevel2Controller(IComWorkRepository comWorkRepository,
-            INichtAktivierteBenutzerRepository nichtAktivierteBenutzerRepository)
+        public RegisterLevel3Controller(IComWorkRepository comWorkRepository,
+            INichtAktivierteBenutzerRepository nichtAktivierteBenutzerRepository, SirenBenutzerMessageCreater benutzerMessageCreater)
         {
             _comWorkRepository = comWorkRepository;
             _nichtAktivierteBenutzerRepository = nichtAktivierteBenutzerRepository;
+            _benutzerMessageCreater = benutzerMessageCreater;
         }
 
         [HttpGet("search")]
         public IActionResult Search([FromQuery] string email)
         {
-            var benutzer2 = _nichtAktivierteBenutzerRepository.FindeBenutzerByMail(email);
-            if (benutzer2 != null) return Json(new {status = benutzer2.GetType().Name});
-            var benutzer3 = _comWorkRepository.FindeBenutzerByMail(email);
-            if (benutzer3 != null) return Json(new {status = benutzer3.GetType().Name});
-            return Json(new {status = typeof(UnbekannterBenutzer).Name});
+            var benutzer = _nichtAktivierteBenutzerRepository.FindeBenutzerByMail(email);
+            if (benutzer != null) return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(benutzer));
+            benutzer = _comWorkRepository.FindeBenutzerByMail(email);
+            if (benutzer != null) return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(benutzer));
+            return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(new UnbekannterBenutzer(email)));
         }
 
         [HttpPut("{email}/ManuelleRegistrierung")]
@@ -36,7 +38,7 @@ namespace coIT.MyHeco.Registrierung.Web.Controllers
                 benutzer.ManuelleRegistrierung.Run(new ManuelleRegistrierungsParameter(firmenName, passwort));
             _nichtAktivierteBenutzerRepository.Add(nichtAktivierterBenutzer as NichtAktivierterBenutzer);
             _nichtAktivierteBenutzerRepository.Speichern();
-            return Json(new {status = nichtAktivierterBenutzer.GetType().Name});
+            return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(nichtAktivierterBenutzer));
         }
 
         [HttpPut("{email}/AutoRegistrierung")]
@@ -47,16 +49,16 @@ namespace coIT.MyHeco.Registrierung.Web.Controllers
                 benutzer.AutomatischeRegistrierung.Run(new AutomatischeRegistrierungsParameter(passwort));
             _nichtAktivierteBenutzerRepository.Add(nichtAktivierterBenutzer as NichtAktivierterBenutzer);
             _nichtAktivierteBenutzerRepository.Speichern();
-            return Json(new {status = nichtAktivierterBenutzer.GetType().Name});
+            return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(nichtAktivierterBenutzer));
         }
 
-        [HttpPut("{email}/Aktivierung")]
+        [HttpPost("{email}/Aktivierung")]
         public IActionResult Aktivierung(string email, string aktivierungscode)
         {
             var benutzer = _nichtAktivierteBenutzerRepository.FindeBenutzerByMail(email);
             benutzer.Aktivieren.Run(new AktivierungsParameter(aktivierungscode));
             _nichtAktivierteBenutzerRepository.Speichern();
-            return Json(new {status = "MyHecoBenutzer"});
+            return Redirect($"http://localhost:60655/api/v2/Login/search?email={email}");
         }
     }
 }

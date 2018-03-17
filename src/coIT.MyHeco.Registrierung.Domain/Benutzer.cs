@@ -1,4 +1,5 @@
-﻿using coIT.MyHeco.Registrierung.Domain.Aktionen;
+﻿using coIT.MyHeco.Core;
+using coIT.MyHeco.Registrierung.Domain.Aktionen;
 using coIT.MyHeco.Registrierung.Domain.Common;
 
 namespace coIT.MyHeco.Registrierung.Domain
@@ -8,21 +9,8 @@ namespace coIT.MyHeco.Registrierung.Domain
     {
         public string Email { get; protected set; }
 
-        public virtual Benutzer RunManuelleRegistrierung(
-            ManuelleRegistrierungsParameter manuelleRegistrierungsParameter)
-        {
-            return this;
-        }
-
-        public virtual Benutzer RunAutomatischeRegistrierung(
-            AutomatischeRegistrierungsParameter automatischeRegistrierungsParameter)
-        {
-            return this;
-        }
-
-        public virtual Benutzer RunAktivieren(AktivierungsParameter aktivierungsParameter)
-        {
-            return this;
-        }
+        public virtual Command<Benutzer,AutomatischeRegistrierungsParameter> AutomatischeRegistrierung => Command<Benutzer,AutomatischeRegistrierungsParameter>.OffCommand(this);
+        public virtual Command<Benutzer,ManuelleRegistrierungsParameter> ManuelleRegistrierung => Command<Benutzer,ManuelleRegistrierungsParameter>.OffCommand(this);
+        public virtual Command<Benutzer,AktivierungsParameter> Aktivieren => Command<Benutzer,AktivierungsParameter>.OffCommand(this);
     }
 }

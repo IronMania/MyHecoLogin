@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace coIT.MyHeco.Login.Web.Extensions
 {
@@ -11,6 +12,10 @@ namespace coIT.MyHeco.Login.Web.Extensions
             object routeValues = null)
         {
             return url.Action(actionName, controllerName, routeValues, url.ActionContext.HttpContext.Request.Scheme);
+        }
+        public static string ControllerName(this Type controller)
+        {
+            return controller.Name.Replace("Controller", string.Empty);
         }
     }
 }

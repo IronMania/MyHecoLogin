@@ -23,7 +23,8 @@ namespace coIT.MyHeco.Login.Web.Model.Hypermedia
         {
             Links = new List<Link>()
             {
-                new Link(urlHelper.AbsoluteAction(),"self")
+                new Link(urlHelper.AbsoluteAction(),"self"),
+                new Link("http://localhost:54187/admin/users", "Adminarea")
             };
 
         }
@@ -31,7 +32,8 @@ namespace coIT.MyHeco.Login.Web.Model.Hypermedia
         {
             Links = new List<Link>()
             {
-                new Link(selfLink,"self")
+                new Link(selfLink,"self"),
+                new Link("http://localhost:54187/admin/users", "Adminarea")
             };
 
         }

@@ -3,6 +3,7 @@ using coIT.MyHeco.Registrierung.Domain;
 using coIT.MyHeco.Registrierung.Domain.Services;
 using coIT.MyHeco.Registrierung.Web.Extensions;
 using coIT.MyHeco.Registrierung.Web.Model.Hypermedia;
+using CoIT.MyHeco.Registrierung.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coIT.MyHeco.Registrierung.Web.Controllers
@@ -34,7 +35,7 @@ namespace coIT.MyHeco.Registrierung.Web.Controllers
 
         private Siren ConvertToSiren(NichtAktivierterBenutzer user)
         {
-            var selfUrl = _urlHelper.AbsoluteAction(nameof(RegisterLevel2Controller.Search), typeof(RegisterLevel2Controller).ControllerName(), new {email = user.Email});
+            var selfUrl = _urlHelper.AbsoluteAction(nameof(RegisterLevel3Controller.Search), typeof(RegisterLevel3Controller).ControllerName(), new {email = user.Email});
             var result = new Siren(selfUrl);
             result.Class.Add(user.GetType().Name);
             result.Properties.Add("Email",user.Email);
