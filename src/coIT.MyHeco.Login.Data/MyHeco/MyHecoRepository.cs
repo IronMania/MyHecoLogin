@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using coIT.MyHeco.Login.Domain;
 using coIT.MyHeco.Login.Domain.Services;
@@ -33,10 +34,15 @@ namespace coIT.MyHeco.Login.Data.MyHeco
 
         public void Update(MyHecoBenutzer benutzer)
         {
+            if (benutzer.Id != Guid.Empty)
+            {
+                _context.Benutzer.Update(benutzer);
+                return;
+            }
             var user = _context.Benutzer.First(hecoBenutzer =>
                 hecoBenutzer.LoginInformation.Email.Equals(benutzer.LoginInformation.Email));
             _context.Entry(user).State = EntityState.Deleted;
-            _context.Add(benutzer);
+            _context.Benutzer.Add(benutzer);
         }
     }
 }

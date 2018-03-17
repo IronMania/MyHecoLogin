@@ -42,7 +42,7 @@ namespace coIT.MyHeco.Registrierung.Data
 
         public void Speichern()
         {
-            foreach (var user in _users.Values)
+            foreach (var user in _users.Values.ToList())
             {
                 user.DomainEvents.ToList().ForEach(foo => _mediator.Publish(foo));
                 user.ClearEvents();

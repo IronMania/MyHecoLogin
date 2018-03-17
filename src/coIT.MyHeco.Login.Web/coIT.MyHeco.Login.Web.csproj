@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
   </ItemGroup>
 
@@ -20,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\coIt.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj" />
     <ProjectReference Include="..\coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj" />
+    <ProjectReference Include="..\coIT.MyHeco.Registrierung.Data\coIT.MyHeco.Registrierung.Data.csproj" />
+    <ProjectReference Include="..\coIT.MyHeco.Registrierung.Domain\coIT.MyHeco.Registrierung.Domain.csproj" />
   </ItemGroup>
 
 </Project>

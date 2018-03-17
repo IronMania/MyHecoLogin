@@ -3,6 +3,8 @@ using coIT.MyHeco.Login.Domain;
 using coIT.MyHeco.Login.Domain.Services;
 using coIT.MyHeco.Login.Web.Extensions;
 using coIT.MyHeco.Login.Web.Model.Hypermedia;
+using coIT.MyHeco.Registrierung.Domain;
+using coIT.MyHeco.Registrierung.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coIT.MyHeco.Login.Web.Controllers
@@ -10,14 +12,14 @@ namespace coIT.MyHeco.Login.Web.Controllers
     [Route("[controller]")]
     public class AdminController : Controller
     {
-        private readonly IMyHecoRepository _myHecoRepository;
+        private readonly INichtAktivierteBenutzerRepository _nichtAktivierteBenutzerRepository;
         private readonly IUrlHelper _urlHelper;
 
         public AdminController(IUrlHelper urlHelper,
-            IMyHecoRepository myHecoRepository)
+            INichtAktivierteBenutzerRepository nichtAktivierteBenutzerRepository)
         {
             _urlHelper = urlHelper;
-            _myHecoRepository = myHecoRepository;
+            _nichtAktivierteBenutzerRepository = nichtAktivierteBenutzerRepository;
         }
 
         // GET api/values
@@ -25,7 +27,7 @@ namespace coIT.MyHeco.Login.Web.Controllers
         public IActionResult GetAll()
         {    
             var result = new Siren(_urlHelper);
-            var benutzer = _myHecoRepository.All().OfType<NichtAktivierterBenutzer>()
+            var benutzer = _nichtAktivierteBenutzerRepository.All().OfType<NichtAktivierterBenutzer>()
                 .Select(ConvertToSiren);
             result.Entities.AddRange(benutzer);
             return Json(result);

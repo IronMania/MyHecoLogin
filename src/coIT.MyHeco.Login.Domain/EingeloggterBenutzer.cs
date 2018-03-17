@@ -5,6 +5,7 @@ namespace coIT.MyHeco.Login.Domain
 {
     public class EingeloggterBenutzer : MyHecoBenutzer
     {
+        private EingeloggterBenutzer(){}
         public EingeloggterBenutzer(LoginInformation loginInformation, Firma firma) : base(loginInformation, firma)
         {
         }

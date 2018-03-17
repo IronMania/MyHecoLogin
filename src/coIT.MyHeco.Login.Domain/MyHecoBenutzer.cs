@@ -17,7 +17,7 @@ namespace coIT.MyHeco.Login.Domain
             Firma = firma;
         }
 
-        public Firma Firma { get; }
+        public Firma Firma { get; private set; }
 
         public LoginInformation LoginInformation { get; protected set; }
         public int WrongLogins { get; private set; }

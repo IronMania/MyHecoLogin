@@ -12,8 +12,8 @@
             Email = email;
         }
 
-        public string Email { get; }
-        public string Passwort { get; }
+        public string Email { get; private set; }
+        public string Passwort { get; private set; }
 
         public LoginInformation ChangePassword(string newPassword)
         {

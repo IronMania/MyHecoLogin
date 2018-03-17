@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using coIT.MyHeco.Core.BenutzerInformationen;
 using coIT.MyHeco.Login.Domain;
 using coIT.MyHeco.Login.Domain.Services;
 

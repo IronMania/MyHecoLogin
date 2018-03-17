@@ -5,23 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180313123241_initialMigration.cs" />
+    <Compile Remove="Migrations\20180313123511_initialMigration.cs" />
+    <Compile Remove="Migrations\20180313130347_KeyDefinition.cs" />
     <Compile Remove="MyHeco\20180112065013_InitialMigration.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <Reference Include="Microsoft.EntityFrameworkCore">
-      <HintPath>C:\Users\joerg.weißbecker\.nuget\packages\microsoft.entityframeworkcore\2.0.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Relational">
-      <HintPath>C:\Users\joerg.weißbecker\.nuget\packages\microsoft.entityframeworkcore.relational\2.0.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer">
-      <HintPath>C:\Users\joerg.weißbecker\.nuget\packages\microsoft.entityframeworkcore.sqlserver\2.0.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\coIT.MyHeco.Core\coIT.MyHeco.Core.csproj" />
+    <ProjectReference Include="..\coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>

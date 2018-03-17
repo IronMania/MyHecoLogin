@@ -1,12 +1,15 @@
-﻿using coIT.MyHeco.Login.Data.ComWork;
-using coIT.MyHeco.Login.Data.MyHeco;
+﻿using coIT.MyHeco.Login.Data.MyHeco;
 using coIT.MyHeco.Login.Domain.Services;
-using coIT.MyHeco.Login.Web.Controllers;
+using coIT.MyHeco.Registrierung.Data;
+using coIT.MyHeco.Registrierung.Data.ComWork;
+using coIT.MyHeco.Registrierung.Domain.Services;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,15 +28,20 @@ namespace coIT.MyHeco.Login.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IComWorkRepository, ComWorkRepositoryDummy>();
-            services.AddTransient<IMyHecoRepository, MyHecoRepositoryDummy>();
-            services.AddTransient<IBenutzerService, BenutzerService>();
+            services.AddTransient<INichtAktivierteBenutzerRepository, NichtaktivierteBenutzerRepository>();
+            services.AddTransient<IMyHecoRepository, MyHecoRepository>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IUrlHelper>(x =>
             {
                 var actionContext = x.GetService<IActionContextAccessor>().ActionContext;
                 return new UrlHelper(actionContext);
             });
+            services.AddDbContext<MyHecoDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<MyHecoContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors();
+            services.AddMediatR(typeof(BenutzerAktiviertHandler));
             services.AddMvc();
         }
 
