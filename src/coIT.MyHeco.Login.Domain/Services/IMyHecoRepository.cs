@@ -2,6 +2,6 @@
 {
     public interface IMyHecoRepository : IRepository
     {
-        void Update(Benutzer benutzer);
+        void Update(MyHecoBenutzer benutzer);
     }
 }

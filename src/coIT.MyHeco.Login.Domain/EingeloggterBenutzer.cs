@@ -1,27 +1,24 @@
-﻿using coIT.MyHeco.Login.Domain.Aktionen;
-using coIT.MyHeco.Login.Domain.BenutzerInformationen;
-using coIT.MyHeco.Login.Domain.Common;
+﻿using coIT.MyHeco.Core.BenutzerInformationen;
+using coIT.MyHeco.Login.Domain.Aktionen;
 
 namespace coIT.MyHeco.Login.Domain
 {
     public class EingeloggterBenutzer : MyHecoBenutzer
     {
-        public EingeloggterBenutzer(LoginInformation loginInformation, Firma firma) : base(loginInformation,firma)
+        public EingeloggterBenutzer(LoginInformation loginInformation, Firma firma) : base(loginInformation, firma)
         {
         }
 
-        public override Benutzer RunPasswortAendern(PasswortAendernParameter arg)
+        public override MyHecoBenutzer RunPasswortAendern(PasswortAendernParameter arg)
         {
             if (LoginInformation.Passwort.Equals(arg.AltesPasswort) && arg.NeuesPasswort.Equals(arg.NeuesPasswortCheck))
-            {
                 LoginInformation = LoginInformation.ChangePassword(arg.NeuesPasswort);
-            }
             return this;
         }
 
-        public override Benutzer RunLogout()
+        public override MyHecoBenutzer RunLogout()
         {
-            return new MyHecoBenutzer(LoginInformation,Firma);
+            return new MyHecoBenutzer(LoginInformation, Firma);
         }
     }
 }

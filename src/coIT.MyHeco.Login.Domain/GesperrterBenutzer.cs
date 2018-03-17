@@ -1,6 +1,4 @@
-﻿using coIT.MyHeco.Login.Domain.Aktionen;
-using coIT.MyHeco.Login.Domain.BenutzerInformationen;
-using coIT.MyHeco.Login.Domain.Common;
+﻿using coIT.MyHeco.Core.BenutzerInformationen;
 
 namespace coIT.MyHeco.Login.Domain
 {
