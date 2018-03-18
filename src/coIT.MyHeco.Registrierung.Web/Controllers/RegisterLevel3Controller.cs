@@ -11,23 +11,22 @@ namespace CoIT.MyHeco.Registrierung.Web.Controllers
         private readonly IComWorkRepository _comWorkRepository;
         private readonly INichtAktivierteBenutzerRepository _nichtAktivierteBenutzerRepository;
         private readonly SirenBenutzerMessageCreater _benutzerMessageCreater;
+        private readonly BenutzerSuche _benutzerSuche;
 
         public RegisterLevel3Controller(IComWorkRepository comWorkRepository,
-            INichtAktivierteBenutzerRepository nichtAktivierteBenutzerRepository, SirenBenutzerMessageCreater benutzerMessageCreater)
+            INichtAktivierteBenutzerRepository nichtAktivierteBenutzerRepository, SirenBenutzerMessageCreater benutzerMessageCreater, BenutzerSuche benutzerSuche)
         {
             _comWorkRepository = comWorkRepository;
             _nichtAktivierteBenutzerRepository = nichtAktivierteBenutzerRepository;
             _benutzerMessageCreater = benutzerMessageCreater;
+            _benutzerSuche = benutzerSuche;
         }
 
         [HttpGet("search")]
         public IActionResult Search([FromQuery] string email)
         {
-            var benutzer = _nichtAktivierteBenutzerRepository.FindeBenutzerByMail(email);
-            if (benutzer != null) return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(benutzer));
-            benutzer = _comWorkRepository.FindeBenutzerByMail(email);
-            if (benutzer != null) return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(benutzer));
-            return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(new UnbekannterBenutzer(email)));
+            var benutzer = _benutzerSuche.Finde(email);
+            return Json(_benutzerMessageCreater.CreateSirenVonBenutzer(benutzer));
         }
 
         [HttpPut("{email}/ManuelleRegistrierung")]

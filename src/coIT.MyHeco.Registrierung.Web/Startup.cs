@@ -28,6 +28,7 @@ namespace coIT.MyHeco.Registrierung.Web
         {
             services.AddTransient<IComWorkRepository, ComWorkRepositoryDummy>();
             services.AddTransient<SirenBenutzerMessageCreater>();
+            services.AddTransient<BenutzerSuche>();
             services.AddTransient<INichtAktivierteBenutzerRepository, NichtaktivierteBenutzerRepository>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IUrlHelper>(x =>
