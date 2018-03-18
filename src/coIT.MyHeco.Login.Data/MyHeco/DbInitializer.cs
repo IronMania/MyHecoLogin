@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using coIT.MyHeco.Core.BenutzerInformationen;
 using coIT.MyHeco.Login.Domain;
 using Microsoft.EntityFrameworkCore;
 
