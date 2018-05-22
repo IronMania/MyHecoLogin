@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Domain", "coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj", "{A91E74A5-7CF1-4A8F-B47A-64018898D596}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Data", "coIt.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj", "{D3375132-2184-4D03-A44A-AC94E7160D7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Data", "coIT.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj", "{D3375132-2184-4D03-A44A-AC94E7160D7B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coIT.MyHeco.Login.Web", "coIT.MyHeco.Login.Web\coIT.MyHeco.Login.Web.csproj", "{5249F2CE-E798-4743-8738-D1E0B78A4004}"
 EndProject
