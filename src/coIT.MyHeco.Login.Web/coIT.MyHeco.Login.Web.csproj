@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\coIt.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj" />
+    <ProjectReference Include="..\coIT.MyHeco.Login.Data\coIT.MyHeco.Login.Data.csproj" />
     <ProjectReference Include="..\coIT.MyHeco.Login.Domain\coIT.MyHeco.Login.Domain.csproj" />
   </ItemGroup>
 
